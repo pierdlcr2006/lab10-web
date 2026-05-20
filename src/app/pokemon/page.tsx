@@ -1,7 +1,6 @@
-import Link from "next/link";
 import { PokemonListResponse, SimplePokemon } from "../../types/pokemon";
-import Image from "next/image";
 import RenderBadge from "@/components/RenderBadge";
+import PokemonExplorer from "./PokemonExplorer";
 
 async function getPokemons(): Promise<SimplePokemon[]> {
   const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151", {
@@ -19,63 +18,52 @@ export default async function PokemonList() {
   const pokemons = await getPokemons();
 
   return (
-    <div className="px-4 py-8 md:px-6 md:py-10">
+    <div className="px-4 py-8 md:px-6 md:py-12">
       <div className="mx-auto max-w-7xl">
-        {/* Cabecera estilo dispositivo Pokédex */}
-        <header className="mb-8 overflow-hidden rounded-2xl border-4 border-black bg-[#e3350d] shadow-[6px_6px_0_#000] md:mb-10">
+        {/* Cabecera estilo Consola Pokédex Físico */}
+        <header className="mb-8 overflow-hidden rounded-2xl border-4 border-black bg-[#e3350d] shadow-[8px_8px_0_#000] md:mb-12">
+          {/* Fila de Luces de la Consola */}
+          <div className="border-b-4 border-black bg-stone-900 px-5 py-3.5 flex items-center justify-between">
+            {/* Ojo del Sensor Azul Grande */}
+            <div className="flex items-center gap-3">
+              <div className="relative h-12 w-12 rounded-full border-4 border-white bg-[#29b6f6] shadow-[0_0_15px_#29b6f6,inset_2px_2px_4px_rgba(255,255,255,0.7)] animate-pulse">
+                <span className="absolute top-1.5 left-1.5 h-3.5 w-3.5 rounded-full bg-white opacity-85" />
+              </div>
+              <div className="flex gap-1.5">
+                <span className="h-4.5 w-4.5 rounded-full border-2 border-black bg-red-600 animate-led-fast" />
+                <span className="h-4.5 w-4.5 rounded-full border-2 border-black bg-yellow-400 animate-led-slow" />
+                <span className="h-4.5 w-4.5 rounded-full border-2 border-black bg-emerald-500" />
+              </div>
+            </div>
+            {/* Screen detail indicator */}
+            <div className="hidden sm:flex items-center gap-2 font-mono text-[9px] font-black text-stone-400 uppercase tracking-widest">
+              <span>System: Online</span>
+              <span className="h-2 w-2 rounded-full bg-emerald-500 animate-ping" />
+            </div>
+          </div>
+
           <div className="flex flex-col gap-4 bg-[#f8f4e8] p-5 text-black md:flex-row md:items-center md:justify-between md:p-6">
             <div>
-              <p className="text-xs font-bold uppercase tracking-widest text-[#e3350d]">
-                Región Kanto · Gen 1
+              <p className="text-xs font-black uppercase tracking-widest text-[#e3350d]">
+                Región Kanto · GEN 1 · DB-151
               </p>
-              <h1 className="font-display mt-1 text-3xl font-black uppercase md:text-4xl">
+              <h1 className="font-display mt-1 text-3xl font-black uppercase tracking-tight md:text-4.5xl">
                 Pokédex Nacional
               </h1>
             </div>
             <div className="flex flex-wrap items-center gap-3">
-              <div className="poke-screen flex h-14 min-w-[120px] items-center justify-center px-4">
-                <span className="font-mono text-2xl font-black text-[#9edc9e]">
-                  {pokemons.length}
-                </span>
+              {/* Retro metal grid style for render mode badge wrapper */}
+              <div className="rounded-lg border-2 border-black bg-[#97ce4c]/20 p-1 flex items-center justify-center">
+                <RenderBadge mode="ISR" detail="24h" variant="pokemon" />
               </div>
-              <RenderBadge mode="ISR" detail="24h" variant="pokemon" />
             </div>
           </div>
         </header>
 
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:gap-4 lg:grid-cols-4 xl:grid-cols-5">
-          {pokemons.map((pokemon) => {
-            const padId = pokemon.id.toString().padStart(3, "0");
-            return (
-              <Link
-                key={pokemon.name}
-                href={`/pokemon/${pokemon.name}`}
-                className="poke-card group block transition-all duration-200"
-              >
-                <div className="border-b-4 border-black bg-[#e3350d] px-2 py-1 text-center">
-                  <span className="font-mono text-xs font-black text-white">
-                    #{padId}
-                  </span>
-                </div>
-                <div className="flex flex-col items-center p-3">
-                  <div className="poke-screen mb-2 flex h-24 w-full items-center justify-center p-2 md:h-28">
-                    <Image
-                      width={96}
-                      height={96}
-                      src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.id}.svg`}
-                      alt={pokemon.name}
-                      className="h-20 w-20 object-contain transition-transform group-hover:scale-110 md:h-24 md:w-24"
-                    />
-                  </div>
-                  <h2 className="font-display text-center text-sm font-black capitalize md:text-base">
-                    {pokemon.name}
-                  </h2>
-                </div>
-              </Link>
-            );
-          })}
-        </div>
+        {/* Módulo Principal Cliente */}
+        <PokemonExplorer pokemons={pokemons} />
       </div>
     </div>
   );
 }
+
