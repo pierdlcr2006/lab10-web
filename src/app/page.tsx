@@ -1,99 +1,105 @@
 import Link from "next/link";
-import { IoGameController, IoPlanetOutline } from "react-icons/io5";
+import { IoGameController, IoPlanetOutline, IoCodeSlash } from "react-icons/io5";
+import RenderBadge from "@/components/RenderBadge";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 text-white flex flex-col items-center justify-center p-6 relative overflow-hidden font-sans">
-      
-      {/* Background Decorative Circles */}
-      <div className="absolute top-10 left-10 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-10 right-10 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl"></div>
+    <div className="home-mesh min-h-screen text-white">
+      {/* Barra superior visible */}
+      <div className="border-b border-white/10 bg-black/50 px-4 py-2 text-center text-xs font-semibold tracking-widest text-slate-400 uppercase backdrop-blur-sm">
+        C24 · Desarrollo Web Avanzado · Next.js App Router
+      </div>
 
-      <div className="relative z-10 max-w-4xl w-full text-center space-y-12">
-        
-        {/* Title and subtitle */}
-        <div className="space-y-4">
-          <h1 className="text-5xl md:text-7xl font-black tracking-tight leading-none">
-            Desarrollo de Aplicaciones <br />
-            <span className="bg-gradient-to-r from-yellow-400 via-emerald-450 to-purple-500 bg-clip-text text-transparent">
+      <main className="mx-auto flex min-h-[calc(100vh-36px)] max-w-6xl flex-col items-center justify-center gap-10 px-4 py-12 md:py-16">
+        {/* Hero */}
+        <section className="animate-fade-in-up w-full text-center">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-sm font-medium text-slate-300">
+            <IoCodeSlash className="text-violet-400" />
+            SSG · ISR · CSR
+          </div>
+
+          <h1 className="font-display text-4xl font-black leading-tight md:text-6xl lg:text-7xl">
+            <span className="block text-white">Aplicaciones</span>
+            <span className="bg-gradient-to-r from-[#e3350d] via-[#97ce4c] to-[#42f5b3] bg-clip-text text-transparent">
               Web Avanzado
             </span>
           </h1>
-          <p className="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto font-medium">
-            Next.js App Router: Enrutamiento, Generación Estática (SSG), Regeneración Estática Incremental (ISR) y Renderizado del Cliente (CSR).
-          </p>
-        </div>
 
-        {/* Selector Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
-          
-          {/* Pokédex Card */}
+          <p className="mx-auto mt-5 max-w-lg text-base text-slate-400 md:text-lg">
+            Dos demos interactivas para explorar estrategias de renderizado en
+            Next.js 16.
+          </p>
+        </section>
+
+        {/* Tarjetas grandes — diseño muy distinto por sección */}
+        <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
+          {/* Pokémon */}
           <Link
             href="/pokemon"
-            className="group relative flex flex-col justify-between p-8 bg-slate-900/60 backdrop-blur-md border border-white/10 rounded-3xl text-left hover:border-yellow-400/30 transition-all duration-300 shadow-2xl hover:shadow-yellow-500/5 transform hover:-translate-y-2 overflow-hidden"
+            className="animate-fade-in-up group relative overflow-hidden rounded-2xl border-4 border-black bg-[#e3350d] p-1 shadow-[8px_8px_0_#000] transition-all hover:shadow-[12px_12px_0_#000] hover:-translate-y-1"
+            style={{ animationDelay: "100ms" }}
           >
-            {/* Hover Background Glow */}
-            <div className="absolute -inset-px bg-gradient-to-br from-yellow-400/20 to-purple-600/0 rounded-3xl opacity-0 group-hover:opacity-100 transition duration-300"></div>
-
-            <div className="relative z-10 space-y-6">
-              <div className="bg-yellow-400/10 w-16 h-16 rounded-2xl flex items-center justify-center border border-yellow-400/20 text-yellow-400 group-hover:scale-110 transition-transform duration-300">
-                <IoGameController size={32} />
+            <div className="rounded-xl bg-[#f8f4e8] p-6 text-black md:p-8">
+              <div className="mb-5 flex items-start justify-between">
+                <div className="flex h-16 w-16 items-center justify-center rounded-xl border-4 border-black bg-white shadow-[4px_4px_0_#000]">
+                  <IoGameController size={36} className="text-[#e3350d]" />
+                </div>
+                <RenderBadge mode="ISR" detail="24h" variant="pokemon" />
               </div>
-              
-              <div className="space-y-2">
-                <h2 className="text-2xl font-black text-white group-hover:text-yellow-450 transition-colors duration-300">
-                  Pokédex Next.js
-                </h2>
-                <p className="text-slate-400 text-sm leading-relaxed">
-                  Explora los 151 Pokémon originales. Utiliza rutas dinámicas, generación estática de parámetros (SSG) y regeneración estática incremental (ISR) revalidada cada 24 horas.
-                </p>
-              </div>
-            </div>
 
-            <div className="relative z-10 pt-6 flex items-center gap-1 text-sm font-bold text-yellow-400 group-hover:translate-x-1 transition-transform duration-300 mt-6">
-              <span>Ingresar al Pokédex</span>
-              <span>→</span>
+              <h2 className="font-display text-3xl font-black uppercase md:text-4xl">
+                Pokédex
+              </h2>
+              <p className="mt-2 text-sm leading-relaxed text-stone-600">
+                151 Pokémon con rutas dinámicas, SSG en build y revalidación
+                cada 24 horas. Tarjetas estilo consola clásica.
+              </p>
+
+              <div className="poke-screen mt-6 flex h-20 items-center justify-center">
+                <span className="font-mono text-lg font-bold tracking-widest text-[#9edc9e] animate-float">
+                  ▶ ENTRAR
+                </span>
+              </div>
             </div>
           </Link>
 
-          {/* Rick & Morty Card */}
+          {/* Rick */}
           <Link
             href="/rick"
-            className="group relative flex flex-col justify-between p-8 bg-slate-900/60 backdrop-blur-md border border-white/10 rounded-3xl text-left hover:border-emerald-400/30 transition-all duration-300 shadow-2xl hover:shadow-emerald-500/5 transform hover:-translate-y-2 overflow-hidden"
+            className="animate-fade-in-up group relative overflow-hidden rounded-2xl border-2 border-[#42f5b3]/60 bg-black p-6 shadow-[0_0_40px_rgba(66,245,179,0.15)] transition-all hover:border-[#42f5b3] hover:shadow-[0_0_60px_rgba(66,245,179,0.35)] hover:-translate-y-1 md:p-8"
+            style={{ animationDelay: "200ms" }}
           >
-            {/* Hover Background Glow */}
-            <div className="absolute -inset-px bg-gradient-to-br from-emerald-500/20 to-cyan-600/0 rounded-3xl opacity-0 group-hover:opacity-100 transition duration-300"></div>
+            <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-[#42f5b3]/20 blur-3xl animate-portal" />
+            <div className="pointer-events-none absolute -bottom-8 -left-8 h-32 w-32 rounded-full bg-[#97ce4c]/15 blur-2xl" />
 
-            <div className="relative z-10 space-y-6">
-              <div className="bg-emerald-500/10 w-16 h-16 rounded-2xl flex items-center justify-center border border-emerald-500/20 text-emerald-400 group-hover:scale-110 transition-transform duration-300">
-                <IoPlanetOutline size={32} />
+            <div className="relative">
+              <div className="mb-5 flex items-start justify-between">
+                <div className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-[#42f5b3] bg-black text-[#42f5b3] shadow-[0_0_20px_rgba(66,245,179,0.5)]">
+                  <IoPlanetOutline size={36} className="animate-portal" />
+                </div>
+                <RenderBadge mode="CSR" variant="rick" />
               </div>
-              
-              <div className="space-y-2">
-                <h2 className="text-2xl font-black text-white group-hover:text-emerald-400 transition-colors duration-300">
-                  Rick & Morty Explorer
-                </h2>
-                <p className="text-slate-400 text-sm leading-relaxed">
-                  Busca y filtra personajes en tiempo real (CSR) por nombre, estado, tipo y género. Con caché en el servidor (SSG) e ISR de 10 días.
-                </p>
-              </div>
-            </div>
 
-            <div className="relative z-10 pt-6 flex items-center gap-1 text-sm font-bold text-emerald-400 group-hover:translate-x-1 transition-transform duration-300 mt-6">
-              <span>Ingresar al Explorador</span>
-              <span>→</span>
+              <h2 className="font-display text-3xl font-black text-[#97ce4c] md:text-4xl">
+                Rick & Morty
+              </h2>
+              <p className="mt-2 text-sm leading-relaxed text-slate-400">
+                Búsqueda en tiempo real con filtros CSR. Datos iniciales en
+                caché (SSG) y detalle con ISR de 10 días.
+              </p>
+
+              <p className="mt-6 font-mono text-sm font-bold text-[#42f5b3] transition group-hover:tracking-widest">
+                ABRIR PORTAL →
+              </p>
             </div>
           </Link>
-
         </div>
 
-        {/* Footer info */}
-        <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row items-center justify-between text-xs text-slate-500">
-          <p>Desarrollo de Aplicaciones Web Avanzado • C24 - Sección C-D</p>
-          <p className="mt-2 md:mt-0 font-medium">Docente: Ricardo Coello Palomino</p>
-        </div>
-
-      </div>
+        <footer className="w-full border-t border-white/10 pt-8 text-center text-xs text-slate-500">
+          <p>Docente: Ricardo Coello Palomino</p>
+          <p className="mt-1">Sección C-D</p>
+        </footer>
+      </main>
     </div>
   );
 }

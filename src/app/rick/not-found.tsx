@@ -1,31 +1,18 @@
 import Link from "next/link";
-import { IoSkullOutline } from "react-icons/io5";
 
 export default function NotFound() {
   return (
-    <div className="min-h-[70vh] flex flex-col items-center justify-center text-white p-8">
-      <div className="bg-slate-900/60 backdrop-blur-md border border-white/10 p-10 rounded-2xl max-w-md w-full flex flex-col items-center shadow-2xl">
-        <div className="bg-red-500/10 p-4 rounded-full border border-red-500/20 mb-6 animate-bounce">
-          <IoSkullOutline size={64} className="text-red-450" />
-        </div>
-
-        <h1 className="text-5xl font-black mb-2 text-center text-red-500">
-          404
-        </h1>
-
-        <h2 className="text-2xl font-bold mb-4 text-center">
+    <div className="flex min-h-[60vh] items-center justify-center p-6">
+      <div className="max-w-md rounded-2xl border border-[#42f5b3]/50 bg-black p-8 text-center">
+        <p className="font-display text-6xl font-black text-red-500">404</p>
+        <h1 className="font-display mt-2 text-xl font-black text-[#97ce4c]">
           Dimensión no encontrada
-        </h2>
-
-        <p className="text-slate-400 text-center mb-8 text-sm">
-          El personaje que estás buscando no existe en esta línea de tiempo.
-        </p>
-
+        </h1>
         <Link
           href="/rick"
-          className="w-full bg-emerald-500 hover:bg-emerald-600 text-black font-bold px-6 py-3 rounded-xl transition duration-300 shadow-lg text-center cursor-pointer"
+          className="mt-6 inline-block rounded-lg border border-[#42f5b3] bg-[#42f5b3]/10 px-6 py-2 font-mono font-bold text-[#42f5b3] hover:bg-[#42f5b3] hover:text-black"
         >
-          Volver a Rick & Morty
+          Volver al portal
         </Link>
       </div>
     </div>

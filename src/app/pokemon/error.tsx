@@ -1,43 +1,26 @@
 "use client";
 
 import Link from "next/link";
-import { IoWarningOutline } from "react-icons/io5";
 
-interface ErrorProps {
-  error: Error & { digest?: string };
-  reset: () => void;
-}
-
-export default function Error({
-  error,
-  reset,
-}: ErrorProps) {
+export default function Error({ reset }: { reset: () => void }) {
   return (
-    <div className="min-h-[70vh] flex flex-col items-center justify-center text-white p-8">
-      <div className="bg-slate-900/60 backdrop-blur-md border border-white/10 p-10 rounded-2xl max-w-md w-full flex flex-col items-center shadow-2xl">
-        <div className="bg-yellow-500/10 p-4 rounded-full border border-yellow-500/20 mb-6 animate-pulse">
-          <IoWarningOutline size={64} className="text-yellow-400" />
-        </div>
-
-        <h1 className="text-3xl font-black mb-2 text-center">
-          Ocurrió un error
-        </h1>
-
-        <p className="text-slate-400 text-center mb-8 text-sm">
-          Hubo un problema al cargar los datos del Pokémon.
+    <div className="flex min-h-[60vh] items-center justify-center p-6">
+      <div className="max-w-md rounded-2xl border-4 border-black bg-[#f8f4e8] p-8 text-center text-black shadow-[6px_6px_0_#000]">
+        <p className="font-display text-6xl font-black text-[#e3350d]">!</p>
+        <h1 className="font-display mt-2 text-2xl font-black">Error</h1>
+        <p className="mt-2 text-sm text-stone-600">
+          No se pudieron cargar los datos.
         </p>
-
-        <div className="flex gap-4 w-full">
+        <div className="mt-6 flex gap-3">
           <button
             onClick={() => reset()}
-            className="flex-1 bg-yellow-400 hover:bg-yellow-500 text-black font-bold px-6 py-3 rounded-xl transition duration-300 shadow-lg shadow-yellow-500/20 cursor-pointer text-center"
+            className="flex-1 cursor-pointer rounded-lg border-2 border-black bg-[#e3350d] py-2 font-bold text-white"
           >
             Reintentar
           </button>
-
           <Link
             href="/pokemon"
-            className="flex-1 bg-slate-800 hover:bg-slate-700 text-white font-bold px-6 py-3 rounded-xl transition duration-300 border border-white/10 text-center"
+            className="flex-1 rounded-lg border-2 border-black bg-white py-2 font-bold"
           >
             Volver
           </Link>
